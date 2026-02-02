@@ -1,0 +1,45 @@
+class Bankaccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+        pass
+
+    def deposit(self, amount):
+        self.balance += amount
+        print("存款成功")
+        pass
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise ValueError("Not enough funds")
+        else:
+            self.balance -= amount
+        pass
+
+    def get_balance(self):
+        print("当前的balance是: ", self.balance)
+
+name = input("pls print your name: ")
+account = Bankaccount(name, 0)
+
+while True:
+    choice = int(input("请输入你的选择 1.存钱 2.取钱 3.查询余额 4.退出程序 : "))
+    if choice == 1:
+        account.deposit(int(input("请输入你要存入的金额: ")))
+    elif choice == 2:
+        account.withdraw(int(input("请输入你要取出的金额: ")))
+    elif choice == 3:
+        account.get_balance()
+    elif choice == 4:
+        break
+    else:
+        print("非法的行为")
+
+
+
+
+
+
+
+
+
