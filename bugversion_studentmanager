@@ -1,0 +1,90 @@
+class Student():
+    def __init__(self, name, student_id, scores):
+        self.name = name
+        self.student_id = student_id
+        self.scores = scores
+
+    def average_score(self):
+        total = 0
+        for score in self.scores:
+            total += score
+        return total / len(self.scores)
+
+class Student_Manager:
+    def __init__(self):
+        self.students = []
+
+    def add_student(self, student):
+        self.students.append(student)
+        print("学生添加成功 姓名为:", student.name)
+
+    def search_student(self, student_id):
+
+        for student in self.students:
+            if student.studen_id == student_id:
+                return student
+        return None
+
+    def delete_student(self, student_id):
+        student = self.search_student(student_id)
+        if student:
+            self.students.remove(student)
+            return True
+        return False
+
+
+    def sort_students(self):
+        self.students.sort(key = lambda student: student.average_score(), reverse = True)
+
+manager = Student_Manager()
+
+print("\033[35m欢迎来到学生管理系统\033[0m")
+name = input("请输入你的名字: ")
+student_id = input("请输入你的学号: ")
+scores = input("请输入你的分数: ")
+student = Student("name",student_id,scores)
+
+running = True
+while running:
+    while True:
+        try:
+            choice = int(input("请输入你的选择1/2/3/4"))
+            break
+        except ValueError:
+            print("请输入数字")
+            continue
+
+
+    if choice == 1:
+        manager.add_student(student)
+    elif choice == 2:
+        manager.search_student(student_id)
+    elif choice == 3:
+        manager.delete_student(student_id)
+    elif choice == 4:
+        manager.sort_students()
+    elif choice == 5:
+        print("程序退出成功")
+        running = False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
